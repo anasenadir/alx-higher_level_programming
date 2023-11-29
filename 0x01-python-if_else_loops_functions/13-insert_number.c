@@ -1,4 +1,3 @@
-#include <stdlib.h>
 #include "lists.h"
 
 /**
@@ -17,6 +16,14 @@ listint_t *insert_node(listint_t **head, int number)
 		return (NULL);
 	new_node->n = number;
 	new_node->n = NULL;
+	
+	if (current == NULL || current->n >= number)
+	{
+		new_node->next = current;
+		current = new_node;
+		return (new_node);
+	}
+
 	while (current->next && current->next->n < number)
 		current = current->next;
 	new_node->next = current->next;
