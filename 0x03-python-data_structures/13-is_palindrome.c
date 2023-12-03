@@ -18,6 +18,7 @@ int get_len(listint_t *head)
 	return (len);
 }
 
+
 /**
  * is_palindrome - function that checks if a
  * singly linked list is a palindrome
@@ -34,7 +35,11 @@ int is_palindrome(listint_t **head)
 	if (list_len == 0)
 		return (1);
 
-	arr_ptr = (int *) malloc(list_len + 1);
+	arr_ptr = malloc(list_len + 1);
+	
+	if (!arr_ptr)
+		return (1);
+	
 	for (i = 0; i < list_len; i++)
 	{
 		arr_ptr[i] = current->n;
@@ -51,5 +56,7 @@ int is_palindrome(listint_t **head)
 		i += 1;
 		j -= 1;
 	}
+
+	free(arr_ptr);
 	return (1);
 }
