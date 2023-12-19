@@ -1,8 +1,6 @@
 #!/usr/bin/python3
-"""Node Class"""
+"""Define classes for a singly-linked list."""
 
-
-from typing import Any
 
 
 class Node:
@@ -63,7 +61,6 @@ class Node:
         self.__next_node = value
 
 
-"""SinglyLinkedList class"""
 
 
 class SinglyLinkedList:
