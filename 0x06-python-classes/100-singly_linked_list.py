@@ -6,7 +6,12 @@ class Node:
     """Node Class Of Singly linked list"""
 
     def __init__(self, data, next_node=None):
-        """initialize the Node"""
+        """Initialize a new Node.
+
+        Args:
+            data (int): The data of the new Node.
+            next_node (Node): The next node of the new Node.
+        """
         self.data = data
         self.next_node = next_node
 
@@ -26,19 +31,8 @@ class Node:
             TypeError: if the value is not an integer
         """
         if not isinstance(value, int):
-            raise TypeError("next_node must be a Node object")
+            raise TypeError("data must be a Node object")
         self.__data = value
-
-    @property
-    def next_node(self):
-        """Get/set the next_node of the Node."""
-        return (self.__next_node)
-
-    @next_node.setter
-    def next_node(self, value):
-        if not isinstance(value, Node) and value is not None:
-            raise TypeError("next_node must be a Node object")
-        self.__next_node = value
 
     @property
     def next_node(self):
@@ -62,19 +56,19 @@ class Node:
 
 class SinglyLinkedList:
     """a SinglyLinkedList class that defines a singly linked list"""
+   
     def __init__(self):
+        """Initalize a new SinglyLinkedList."""
         self.__head = None
 
     def __str__(self) -> str:
         """return a string represinting a linkedlist"""
-        current = self.__head
-        linked_list_str = ""
-        while(current):
-            linked_list_str += str(current.data)
-            if (current.next_node is not None):
-                linked_list_str += "\n"
-            current = current.next_node
-        return linked_list_str
+        values = []
+        tmp = self.__head
+        while tmp is not None:
+            values.append(str(tmp.data))
+            tmp = tmp.next_node
+        return ('\n'.join(values))
 
     def sorted_insert(self, value):
         """Insert a new Node to the SinglyLinkedList.
