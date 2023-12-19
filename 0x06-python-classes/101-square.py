@@ -14,20 +14,16 @@ class Square:
         self.size = size
         self.position = position
 
-    def __str__(self) -> str:
-        """return a string like a square with the character #"""
-        string_val = ""
-        if self.size == 0:
-            string_val = "\n"
-            return string_val
-        for _ in range(self.position[1]):
-            string_val += "\n"
-        for i in range(self.size):
-            string_val += " " * self.position[0]
-            string_val += "#" * self.size
-            if (i < self.size - 1):
-                string_val += "\n"
-        return string_val
+    def __str__(self):
+        """Define the print() representation of a Square."""
+        if self.__size != 0:
+            [print("") for i in range(0, self.__position[1])]
+        for i in range(0, self.__size):
+            [print(" ", end="") for j in range(0, self.__position[0])]
+            [print("#", end="") for k in range(0, self.__size)]
+            if i != self.__size - 1:
+                print("")
+        return ("")
 
     @property
     def size(self):
