@@ -34,6 +34,17 @@ class Node:
 
     @property
     def next_node(self):
+        """Get/set the next_node of the Node."""
+        return (self.__next_node)
+
+    @next_node.setter
+    def next_node(self, value):
+        if not isinstance(value, Node) and value is not None:
+            raise TypeError("next_node must be a Node object")
+        self.__next_node = value
+
+    @property
+    def next_node(self):
         """Get the next node"""
         return self.__next_node
 
@@ -72,28 +83,25 @@ class SinglyLinkedList:
         return linked_list_str
 
     def sorted_insert(self, value):
-        """insert a new value to its specific location in order maner
+        """Insert a new Node to the SinglyLinkedList.
+
+        The node is inserted into the list at the correct
+        ordered numerical position.
 
         Args:
-            value (int): the value of the new_node
+            value (Node): The new Node to insert.
         """
-        new_Node = Node(value)
-
-        if (self.__head is not None):
-            self.__head = new_Node
-            return
-
-        current = self.__head
-        if (current.data >= value):
-            new_Node.next_node = current
-            self.__head = new_Node
-            return
-
-        while (current.next_node):
-            if (current.next_node.data >= value):
-                new_Node.next_node = current.next_node
-                current.next_node = new_Node
-                return
-            current = current.next_node
-
-        current.next_node = new_Node
+        new = Node(value)
+        if self.__head is None:
+            new.next_node = None
+            self.__head = new
+        elif self.__head.data > value:
+            new.next_node = self.__head
+            self.__head = new
+        else:
+            tmp = self.__head
+            while (tmp.next_node is not None and
+                    tmp.next_node.data < value):
+                tmp = tmp.next_node
+            new.next_node = tmp.next_node
+            tmp.next_node = new
