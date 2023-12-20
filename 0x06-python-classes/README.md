@@ -55,3 +55,43 @@ classes and objects in Python. I learned about attributes, methods, and properti
   * If a provided `position` attribute is not a tuple of two integers, a
   `TypeError` exception is raised with the message `position must be a tuple of
   2 positive integers`.
+
+* **7. Singly linked list**
+  * [100-singly_linked_list.py](./100-singly_linked_list.py): Python classes `Node`
+  and `SinglyLinkedList` that define a node of a singly-linked list and a singly-linked
+  list. The class `Node` is defined with:
+    * Private instance attribute `data`.
+    * Property `def data(self):` to set `data`.
+    * Property setter `def data(self, value):` to set `data`.
+    * Private instance attribute `next_node`.
+    * Property `def next_node(self):` to set `next_node`.
+    * Property `def next_node(self, value):` to set `next_node`.
+    * Instantiation with `data` and `next_node`:
+    `def __init__(self, data, next_node=None):`
+  * If a provided `data` attribute is not an integer, a `TypeError`
+  exception is raised with the message `data must be an integer`.
+  * If a provided `next_node` attribute is not a `Node` or `None`, a
+  `TypeError` exception is raised with the message `next_node must be a
+  Node object`.
+  * The class `SinglyLinkedList` is defined with:
+    * Private instance attribute `head`.
+    * Instantiation `def __init__(self):`
+    * Public instance method `def sorted_insert(self, value):` that inserts a
+    new `Node` into the correct sorted position in the list increasing order).
+
+* **8. Print Square instance**
+  * [101-square.py](./101-square.py): Python class `Square` that defines a square. Builds on
+  [6-square.py](./6-square.py) with:
+    * Method `__str__` to set printing of a `Square` instance equivalent to
+    `my_print()`.
+
+* **9. Compare 2 squares**
+  * [102-square.py](./102-square.py): Python class `Square` that defines a square. Builds on
+  [101-square.py](./101-square.py) with:
+    * Methods `__eq__`, `__ne__`, `__lt__`, `__le__`, `__gt__`, and `__ge__`,
+    to enable usage of `Square` instances with logical operators `==`, `!=`, `<`,
+    `<=`, `>`, and `>=`, respectively, based on the square area.
+
+* **10. ByteCode -> Python #5**
+  * [103-magic_class.py](./103-magic_class.py): Python function matching exactly a bytecode
+  provided by ALX.
