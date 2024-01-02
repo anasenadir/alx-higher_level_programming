@@ -9,8 +9,10 @@ def matrix_divided(matrix, div):
         div (int/float): an integer or float.
     Return:
         list : return a list of lists.
+    >> import doctest
+    >> doctest.testfile("tests/2-matrix_divided.txt")
     """
-    if (not (isinstance(matrix, list) or matrix == None)):
+    if (not isinstance(matrix, list)):
         raise TypeError("matrix must be a matrix (list of lists) of integers/floats")
     
     if (not (isinstance(div, int) or isinstance(div, float))):
