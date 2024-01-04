@@ -3,8 +3,6 @@
 This module containe a class that define a rectangle.
 """
 
-from signal import valid_signals
-
 
 class Rectangle:
     """class Rectangle that defines a rectangle"""
