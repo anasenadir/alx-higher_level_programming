@@ -7,6 +7,12 @@ This module containe a class that define a rectangle.
 class Rectangle:
     """class Rectangle that defines a rectangle"""
     def __init__(self, width=0, height=0) -> None:
+        """the constractor method of the class
+
+        Args:
+            width (int, optional): width of rect. Defaults to 0.
+            height (int, optional): heigth of rect. Defaults to 0.
+        """
         self.width = width
         self.height = height
 
