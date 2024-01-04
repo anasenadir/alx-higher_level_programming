@@ -3,8 +3,6 @@
 This module containe a class that define a rectangle.
 """
 
-from signal import valid_signals
-
 
 class Rectangle:
     """class Rectangle that defines a rectangle"""
@@ -52,13 +50,10 @@ class Rectangle:
 
         self.__height = value
 
-# if __name__ == "__main__":
-#     rect = Rectangle(1, 220)
-#     print(rect.width)
-#     print(rect.height)
+if __name__ == "__main__":
+    my_rectangle = Rectangle(2, 4)
+    print(my_rectangle.__dict__)
 
-#     rect.width = 300
-#     rect.height = 350
-
-#     print(rect.width)
-#     print(rect.height)
+    my_rectangle.width = 10
+    my_rectangle.height = 3
+    print(my_rectangle.__dict__)
