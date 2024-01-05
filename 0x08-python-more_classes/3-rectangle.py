@@ -92,17 +92,37 @@ class Rectangle:
             return 0
         return 2 * (self.__width + self.__height)
 
-    def __str__(self):
-        """print the rectangle with the character #
+    def draw(self):
+        """Formats a string of '#' and '\n' chars to print the rectangle
+        represented by the current instance.
+
+        Attributes:
+            __width (int): horizontal dimension of rectangle
+            __height (int): vertical dimension of rectangle
+            str (str): string to constructed for return
 
         Returns:
-            str: rectangle with the character #
-        """
-        rect = ""
-        for _ in range(self.__height):
-            rect += "#" * self.width + "\n"
+            str (str): string suitable for printing rectangle (final newline
+            omitted)
 
-        return rect[:-1]
+        """
+        str = ""
+        for row in range(self.__height):
+            for col in range(self.__width):
+                str += '#'
+            if self.__width != 0 and row < (self.__height - 1):
+                str += '\n'
+        return str
+
+    def __str__(self):
+        """Allows direct printing of instances.
+
+        Returns:
+            The output of draw, which creates a string
+        representation of the rectangle suitable for printing.
+
+        """
+        return self.draw()
 
 # if __name__ == "__main__":
 #     my_rectangle = Rectangle(2, 4)
