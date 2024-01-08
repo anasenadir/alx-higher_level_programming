@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+"""Function to add two integers"""
 
 def add_integer(a, b=98):
     """function return the sum of two integers
