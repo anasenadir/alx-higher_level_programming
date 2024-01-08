@@ -1,35 +1,32 @@
 #!/usr/bin/python3
+"""Function to divide all numbers in a matrix"""
+
 
 def matrix_divided(matrix, div):
-    """All elements of the matrix should be divided by div,
-    rounded to 2 decimal places
+    """Get new matrix by dividing all items in it by a given number
 
     Args:
-        matrix (list): a list of lists
-        div (int/float): an integer or float.
-    Return:
-        list : return a list of lists.
-    >> import doctest
-    >> doctest.testfile("tests/2-matrix_divided.txt")
+        matrix (list of list of (int or float)): matrix of numbers to divide
+        div (int or float): number to divide each item in the matrix by
+
+    Returns:
+        list of list of float: matrix with same dimensions where each number is
+        divided by div
+
     """
-    errorMessage = "matrix must be a matrix (list of lists) of integers/floats"
-    if not matrix:
-        raise TypeError(errorMessage)
-    if not isinstance(matrix, list):
-        raise TypeError(errorMessage)
-    for lists in matrix:
-        if not isinstance(lists, list):
-            raise TypeError(errorMessage)
-        for item in lists:
-            if not isinstance(item, int) and not isinstance(item, float):
-                raise TypeError(errorMessage)
-    for lists in matrix:
-        if len(lists) == 0:
-            raise TypeError(errorMessage)
-    if not isinstance(div, int) and not isinstance(div, float):
-        raise TypeError("div must be a number")
-    if not all(len(lists) == len(matrix[0]) for lists in matrix):
-        raise TypeError("Each row of the matrix must have the same size")
+
+    message = 'matrix must be a matrix (list of lists) of integers/floats'
+    isita = isinstance
+    if not isita(matrix, list):
+        raise TypeError(message)
+    if not all(isita(i, list) for i in matrix):
+        raise TypeError(message)
+    if not all(isita(i, int) or isita(i, float) for l in matrix for i in l):
+        raise TypeError(message)
+    if not all(len(l) == len(matrix[0]) for l in matrix):
+        raise TypeError('Each row of the matrix must have the same size')
+    if not isita(div, int) and not isita(div, float):
+        raise TypeError('div must be a number')
     if div == 0:
-        raise ZeroDivisionError("division by zero")
-    return [[round(item / div, 2) for item in lists] for lists in matrix]
+        raise ZeroDivisionError('division by zero')
+    return [[i / div for i in l] for l in matrix]

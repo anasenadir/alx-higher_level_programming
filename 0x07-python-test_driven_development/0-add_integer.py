@@ -1,28 +1,27 @@
 #!/usr/bin/python3
 """Function to add two integers"""
 
+
 def add_integer(a, b=98):
-    """function return the sum of two integers
+    """Add two integers
+
+    If a or b is a float, the fractional part is truncated before adding.
 
     Args:
-        a (int): the first number.
-        b (int, optional): the second number. Defaults to 98.
-
-    Raises:
-        TypeError: if a or b is not integers.
+        a (int or float): first operand
+        b (int or float: second operand
 
     Returns:
-        int : the sum of the two numbers.
-    
-    >> import doctest
-    >> doctest.testfile("tests/0-add_integer.txt")
+        int: a + b
+
     """
-    if not isinstance(a, int) and not isinstance(a, float):
-        raise TypeError("a must be an integer")
-    if not isinstance(b, int) and not isinstance(b, float):
-        raise TypeError("b must be an integer")
+
     if isinstance(a, float):
         a = int(a)
+    elif not isinstance(a, int):
+        raise TypeError('a must be an integer')
     if isinstance(b, float):
         b = int(b)
-    return (a + b)
+    elif not isinstance(b, int):
+        raise TypeError('b must be an integer')
+    return a + b
