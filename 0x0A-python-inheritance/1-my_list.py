@@ -9,9 +9,7 @@ class MyList(list):
     Args:
         list: the base class
     """
-
-    def __init__(self, *args):
-        super().__init__(*args)
-
     def print_sorted(self):
+        """instance method that prints the list, but sorted (ascending sort)
+        """
         print(sorted(self))
