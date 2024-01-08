@@ -1,27 +1,21 @@
 #!/usr/bin/python3
-"""
-===================================
-module with class Rectangle
-===================================
-"""
-
+"""Rectangle class Module"""
 BaseGeometry = __import__("7-base_geometry").BaseGeometry
 
 
 class Rectangle(BaseGeometry):
-    """BaseGeometry class"""
-
+    """Rectangle class"""
     def __init__(self, width, height):
-        """initialize new Geometry instance"""
+        """Initilize rectangle method"""
         self.integer_validator("width", width)
-        self.integer_validator("height", height)
         self.__width = width
+        self.integer_validator("height", height)
         self.__height = height
 
-    def __str__(self):
-        """return a hueman readable message"""
-        return "[Rectangle {}/{}]".format(self.__width, self.__height)
-
     def area(self):
-        """calculate the area of the reactangle"""
+        """Method that returns area of rectangle"""
         return self.__width * self.__height
+
+    def __str__(self):
+        """Returns a string"""
+        return "[Rectangle] {}/{}".format(self.__width, self.__height)
