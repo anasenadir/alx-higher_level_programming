@@ -14,4 +14,4 @@ def class_to_json(obj):
     Returns:
         dict: dictionary description of an object
     """
-    return obj.__dict__;
+    return obj.__dict__
