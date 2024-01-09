@@ -2,6 +2,12 @@
 """function that reads a text file (UTF8) and prints it to stdout
 """
 
+
 def read_file(filename=""):
-    with open (filename) as fd:
+    """function that reads a text file (UTF8) and prints it to stdout
+
+    Args:
+        filename (str, optional): the filename to be readed. Defaults to "".
+    """
+    with open(filename, "r") as fd:
         print(fd.read())
