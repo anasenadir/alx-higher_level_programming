@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+pascal_triangle module
+"""
+
+
 def pascal_triangle(n):
     """ Pascal Triangle 1h"""
     li = []
