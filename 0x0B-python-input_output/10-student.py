@@ -31,9 +31,10 @@ class Student:
         Returns:
             _type_: _description_
         """
-        if attrs:
-            result = dict()
-            for key in attrs:
-                result[key] = self.__dict__.get(key)
-            return result
-        return self.__dict__
+        if attrs is None:
+            return self.__dict__
+        new_dictionary = {}
+        for key, value in self.__dict__.items():
+            if key in attrs:
+                new_dictionary[key] = value
+        return new_dictionary
