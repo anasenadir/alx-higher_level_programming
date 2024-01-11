@@ -120,6 +120,6 @@ class Rectangle(Base):
         so that it returns [Rectangle] (<id>) <x>/<y> - <width>/<height>
         """
         return "[Rectangle] ({}) {}/{} - {}/{}".format(
-            super().__nb_objects, self.__x,
+            self.id, self.__x,
             self.__y, self.__width, self.__height
         )
