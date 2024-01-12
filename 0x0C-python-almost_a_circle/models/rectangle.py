@@ -131,7 +131,7 @@ class Rectangle(Base):
         """
         params = ["id", "width", "height", "x", "y"]
         for index, attr in enumerate(args):
-            if index == len(params):
+            if index >= len(params):
                 break
 
             if params[index] in kwargs:
@@ -142,3 +142,7 @@ class Rectangle(Base):
             if key not in params:
                 continue
             setattr(self, key, value)
+
+    def to_dictionary(self):
+        """return the dictionary represintation of the react object"""
+        return {"x": self.x , "y": self.y, "id": self.id, "height": self.height, "width": self.width}
