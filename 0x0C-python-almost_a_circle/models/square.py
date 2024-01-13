@@ -47,3 +47,7 @@ class Square(Rectangle):
         for key, value in kwargs.items():
             if key in params:
                 setattr(self, key, value)
+
+    def to_dictionary(self):
+        """return the dictionary represintation of the react object"""
+        return {"id": self.id, "x": self.x, "size": self.size, "y": self.y}
