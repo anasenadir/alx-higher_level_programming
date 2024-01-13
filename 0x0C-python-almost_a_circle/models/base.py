@@ -72,5 +72,5 @@ class Base:
         if not path.isfile(file_name):
             return []
         with open(file_name, mode="r", encoding="utf-8") as fd:
-            return [cls.create(**obj) for obj in cls.from_json_string(fd.read())]
-        
+            return [cls.create(**obj)
+                    for obj in cls.from_json_string(fd.read())]
