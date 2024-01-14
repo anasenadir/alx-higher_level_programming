@@ -112,3 +112,15 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(ValueError) as e:
             Rectangle(12, 78, 2, -1)
         self.assertEqual(str(e.exception), msg)
+
+    def test_instantiation_2(self):
+        """tests the instantiation"""
+        d = {'id': 1, '_Rectangle__width': 5,
+             '_Rectangle__height': 12, '_Rectangle__x': 45, '_Rectangle__y': 44}
+        r = Rectangle(5, 12, 45, 44)
+        self.assertEqual(r.__dict__, d)
+
+        d = {'id': 20, '_Rectangle__width': 5,
+             '_Rectangle__height': 12, '_Rectangle__x': 45, '_Rectangle__y': 44}
+        r = Rectangle(5, 12, 45, 44, 20)
+        self.assertEqual(r.__dict__, d)
