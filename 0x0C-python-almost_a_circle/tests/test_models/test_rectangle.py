@@ -40,4 +40,14 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError) as e:
             Rectangle(12,45,45,546,45,444)
         self.assertEqual(str(e.exception), msg)
+
     # ----------------- Tests for #2 ------------------------
+
+    def test_class_type(self):
+        """test the class type"""
+        self.assertEqual(str(Rectangle), 
+                         "<class 'models.rectangle.Rectangle'>")
+
+    def test_inheritance(self):
+        """check the parent of this class"""
+        self.assertTrue(issubclass(Rectangle, Base))
