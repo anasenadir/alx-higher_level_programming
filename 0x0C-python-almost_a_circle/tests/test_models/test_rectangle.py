@@ -51,3 +51,64 @@ class TestRectangle(unittest.TestCase):
     def test_inheritance(self):
         """check the parent of this class"""
         self.assertTrue(issubclass(Rectangle, Base))
+
+    def test_id_inctrementation(self):
+        """check if the id is incremented after any instansiation"""
+        r1 = Rectangle(10, 2)
+        self.assertEqual(r1.id, 1)
+
+        r2 = Rectangle(2, 10)
+        self.assertEqual(r2.id, 2)
+
+        r3 = Rectangle(10, 2, 0, 0, 12)
+        self.assertEqual(r3.id, 12)
+
+    def test_instantiation(self):
+        """test the reactangle instantiation"""
+        r = Rectangle(12, 30)
+        d = {'id': 1, '_Rectangle__width': 12, '_Rectangle__height': 30,
+             '_Rectangle__x': 0, '_Rectangle__y': 0}
+        
+        self.assertDictEqual(r.__dict__, d)
+        self.assertEqual(str(type(r)), "<class 'models.rectangle.Rectangle'>")
+        self.assertTrue(isinstance(r, Base))
+
+        msg = "width must be an integer."
+        with self.assertRaises(TypeError) as e:
+            Rectangle("12", 20)
+        self.assertEqual(str(e.exception), msg)
+
+        msg = "height must be an integer."
+        with self.assertRaises(TypeError) as e:
+            Rectangle(12, "20")
+        self.assertEqual(str(e.exception), msg)
+    
+        msg = "x must be an integer."
+        with self.assertRaises(TypeError) as e:
+            Rectangle(12, 78, "20")
+        self.assertEqual(str(e.exception), msg)
+    
+        msg = "y must be an integer."
+        with self.assertRaises(TypeError) as e:
+            Rectangle(12, 78, 24, "20")
+        self.assertEqual(str(e.exception), msg)
+        
+        msg = "width must be > 0"
+        with self.assertRaises(ValueError) as e:
+            Rectangle(-12, 78)
+        self.assertEqual(str(e.exception), msg)
+
+        msg = "height must be > 0"
+        with self.assertRaises(ValueError) as e:
+            Rectangle(12, -78)
+        self.assertEqual(str(e.exception), msg)
+
+        msg = "x must be >= 0"
+        with self.assertRaises(ValueError) as e:
+            Rectangle(12, 78, -1)
+        self.assertEqual(str(e.exception), msg)
+
+        msg = "y must be >= 0"
+        with self.assertRaises(ValueError) as e:
+            Rectangle(12, 78, 2, -1)
+        self.assertEqual(str(e.exception), msg)
