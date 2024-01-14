@@ -124,3 +124,10 @@ class TestRectangle(unittest.TestCase):
              '_Rectangle__height': 12, '_Rectangle__x': 45, '_Rectangle__y': 44}
         r = Rectangle(5, 12, 45, 44, 20)
         self.assertEqual(r.__dict__, d)
+
+    def test_instantiation_keyword(self):
+        '''Tests positional instantiation using keywords.'''
+        r = Rectangle(100, 200, id=421, y=99, x=101)
+        d = {'_Rectangle__height': 200, '_Rectangle__width': 100,
+             '_Rectangle__x': 101, '_Rectangle__y': 99, 'id': 421}
+        self.assertEqual(r.__dict__, d)
