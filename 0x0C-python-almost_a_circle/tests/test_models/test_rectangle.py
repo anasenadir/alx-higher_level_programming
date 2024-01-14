@@ -14,10 +14,17 @@ class TestRectangle(unittest.TestCase):
         Base._Base__nb_objects = 0
 
     def test_constractor_with_no_args(self):
-        """test the base constractor with no args"""
+        """test the Rectangle constractor with no args"""
         msg = "Rectangle.__init__() missing 3 required positional arguments: 'self', 'width', and 'height'"
         with self.assertRaises(TypeError) as e:
             Rectangle.__init__()
+        self.assertEqual(str(e.exception), msg)
+
+    def test_constractor_with_only_self_arg(self):
+        """test the Rectangle constractor with no args"""
+        msg = "Rectangle.__init__() missing 2 required positional arguments: 'width' and 'height'"
+        with self.assertRaises(TypeError) as e:
+            Rectangle()
         self.assertEqual(str(e.exception), msg)
 
     # ----------------- Tests for #2 ------------------------
