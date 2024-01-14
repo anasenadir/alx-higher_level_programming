@@ -33,4 +33,11 @@ class TestRectangle(unittest.TestCase):
         with self.assertRaises(TypeError) as e:
             Rectangle(1)
         self.assertEqual(str(e.exception), msg)
+    
+    def test_constractor_with_more_than_6_args(self):
+        """test the Rectangle constractor with more than 6 args"""
+        msg = "Rectangle.__init__() takes from 3 to 6 positional arguments but 7 were given"
+        with self.assertRaises(TypeError) as e:
+            Rectangle(12,45,45,546,45,444)
+        self.assertEqual(str(e.exception), msg)
     # ----------------- Tests for #2 ------------------------
