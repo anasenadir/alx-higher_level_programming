@@ -27,4 +27,10 @@ class TestRectangle(unittest.TestCase):
             Rectangle()
         self.assertEqual(str(e.exception), msg)
 
+    def test_constractor_with_one_arg(self):
+        """test the Rectangle constractor with one args"""
+        msg = "Rectangle.__init__() missing 1 required positional argument: 'height'"
+        with self.assertRaises(TypeError) as e:
+            Rectangle(1)
+        self.assertEqual(str(e.exception), msg)
     # ----------------- Tests for #2 ------------------------
