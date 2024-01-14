@@ -124,6 +124,21 @@ class TestRectangle(unittest.TestCase):
              '_Rectangle__height': 12, '_Rectangle__x': 45, '_Rectangle__y': 44}
         r = Rectangle(5, 12, 45, 44, 20)
         self.assertEqual(r.__dict__, d)
+    
+    def test_getters_setter(self):
+        """tests the getters and setter"""
+        r = Rectangle(1, 45)
+        r.width = 20
+        r.height = 98
+        r.x = 147
+        r.y = 13
+        d = {'id': 1, '_Rectangle__width': 20,
+             '_Rectangle__height': 98, '_Rectangle__x': 147, '_Rectangle__y': 13}
+        self.assertDictEqual(r.__dict__, d)
+        self.assertEqual(r.width, 20)
+        self.assertEqual(r.height, 98)
+        self.assertEqual(r.x, 147)
+        self.assertEqual(r.y, 13)
 
     def test_instantiation_keyword(self):
         '''Tests positional instantiation using keywords.'''
