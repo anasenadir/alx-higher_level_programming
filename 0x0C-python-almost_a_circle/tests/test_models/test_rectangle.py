@@ -146,3 +146,19 @@ class TestRectangle(unittest.TestCase):
         d = {'_Rectangle__height': 200, '_Rectangle__width': 100,
              '_Rectangle__x': 101, '_Rectangle__y': 99, 'id': 421}
         self.assertEqual(r.__dict__, d)
+
+    #-----------------------test for 3----------------------
+
+    def test_validate_types(self):
+        """Test types of the properties"""
+        r  = Rectangle(20, 12)
+        attributes = ["width", "height", "x", "y"]
+        invalid_types = (None, 10.2, -20.2, float('inf'), float('-inf'),
+                         True, "text",[7], {78}, (4,), {4:745})
+        
+        for attr in attributes:
+            msg = f"{attr} must be an integer."
+            for inv_type in invalid_types:
+                with self.assertRaises(TypeError) as e:
+                    setattr(r, attr, inv_type)
+                self.assertEqual(str(e.exception), msg)
