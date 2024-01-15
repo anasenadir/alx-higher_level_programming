@@ -6,6 +6,7 @@ import json
 from os import path
 import csv
 
+
 class Base:
     """
     THe Base class
@@ -100,7 +101,7 @@ class Base:
         with open(filename, 'w') as writeFile:
             writer = csv.writer(writeFile)
             writer.writerows(matrix)
-    
+
     @classmethod
     def load_from_file_csv(cls):
         """lood from csv file
