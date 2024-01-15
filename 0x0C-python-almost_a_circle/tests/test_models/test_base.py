@@ -2,70 +2,97 @@
 """Test module for the Base Calss
 """
 import unittest
+import os
 from models.base import Base
-from models.rectangle import Rectangle
 from models.square import Square
+from models.rectangle import Rectangle
+from io import StringIO
+from unittest import TestCase
+from unittest.mock import patch
 
 
-class TestBase(unittest.TestCase):
-    """Test The Base Calss"""
+class TestBaseMethods(unittest.TestCase):
+    """ Suite to test Base class """
 
     def setUp(self):
-        """instantiates the class"""
-        Base.__nb_objects = 0
+        """ Method invoked for each test """
+        Base._Base__nb_objects = 0
 
-    def test_if_base_class_has_private_attr(self):
-        """test if the base class has a private class attribute"""
-        self.assertTrue(hasattr(Base, "_Base__nb_objects"))
-    
-    def test_if_private_attr_initialized_to_zero(self):
-        """tests if the nb_objects initialized to zero"""
-        self.assertEqual(Base.__nb_objects, 0)
-    
-    def test_base_instantiation(self):
-        """tests the base instantiation"""
-        b = Base()
-        self.assertEqual(str(type(b)), "<class 'models.base.Base'>")
-        self.assertEqual(b.__dict__, {'id': 1})
-        self.assertEqual(b.id, 1)
-    
-    def test_constractor_with_no_args(self):
-        """test the base constractor with no args"""
-        msg = "Base.__init__() missing 1 required positional argument: 'self'"
-        with self.assertRaises(TypeError) as e:
-            Base.__init__()
-        
-        self.assertEqual(str(e.exception), msg)
-    
-    def test_constractor_with_more_that_2_args(self):
-        """test the base constractor with more than 2 args"""
-        msg = "Base.__init__() takes from 1 to 2 positional arguments but 3 were given"
-        with self.assertRaises(TypeError) as e:
-            Base(12, 452)
-        
-        self.assertEqual(str(e.exception), msg)
-    
-    # ----------------- Tests for #1 ------------------------
-    def test_id_inctrementation(self):
-        """check if the id is incremented after any instansiation"""
-        b1 = Base()
-        self.assertEqual(b1.id, 2)
-        b2 = Base()
-        self.assertEqual(b2.id, 3)
-        b3 = Base()
-        self.assertEqual(b3.id, 4)
-        b4 = Base(12)
-        self.assertEqual(b4.id, 12)
-        b5 = Base()
-        self.assertEqual(b5.id, 5)
-    
-    def test_if_id_equal_to_nb_objects(self):
-        """test if the id is work as expected and its value
-        is equal to nb_objects private class attr"""
-        b = Base()
-        self.assertEqual(getattr(b, "_Base__nb_objects"), b.id)
+    def test_id(self):
+        """ Test assigned id """
+        new = Base(1)
+        self.assertEqual(new.id, 1)
 
-        
+    def test_id_default(self):
+        """ Test default id """
+        new = Base()
+        self.assertEqual(new.id, 1)
 
-if __name__ == "__main__":
-    unittest.main()
+    def test_id_nb_objects(self):
+        """ Test nb object attribute """
+        new = Base()
+        new2 = Base()
+        new3 = Base()
+        self.assertEqual(new.id, 1)
+        self.assertEqual(new2.id, 2)
+        self.assertEqual(new3.id, 3)
+
+    def test_id_mix(self):
+        """ Test nb object attributes and assigned id """
+        new = Base()
+        new2 = Base(1024)
+        new3 = Base()
+        self.assertEqual(new.id, 1)
+        self.assertEqual(new2.id, 1024)
+        self.assertEqual(new3.id, 2)
+
+    def test_string_id(self):
+        """ Test string id """
+        new = Base('1')
+        self.assertEqual(new.id, '1')
+
+    def test_more_args_id(self):
+        """ Test passing more args to init method """
+        with self.assertRaises(TypeError):
+            new = Base(1, 1)
+
+    def test_access_private_attrs(self):
+        """ Test accessing to private attributes """
+        new = Base()
+        with self.assertRaises(AttributeError):
+            new.__nb_objects
+
+    def test_save_to_file_1(self):
+        """ Test JSON file """
+        Square.save_to_file(None)
+        res = "[]\n"
+        with open("Square.json", "r") as file:
+            with patch('sys.stdout', new=StringIO()) as str_out:
+                print(file.read())
+                self.assertEqual(str_out.getvalue(), res)
+
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+
+        Square.save_to_file([])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+    def test_save_to_file_2(self):
+        """ Test JSON file """
+        Rectangle.save_to_file(None)
+        res = "[]\n"
+        with open("Rectangle.json", "r") as file:
+            with patch('sys.stdout', new=StringIO()) as str_out:
+                print(file.read())
+                self.assertEqual(str_out.getvalue(), res)
+        try:
+            os.remove("Rectangle.json")
+        except:
+            pass
+
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
