@@ -141,7 +141,7 @@ class Rectangle(Base):
 
     def to_dictionary(self):
         """return the dictionary represintation of the react object"""
-       list_atr = ['id', 'width', 'height', 'x', 'y']
+        list_atr = ['id', 'width', 'height', 'x', 'y']
         dict_res = {}
 
         for key in list_atr:
