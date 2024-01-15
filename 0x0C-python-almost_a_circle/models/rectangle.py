@@ -40,7 +40,7 @@ class Rectangle(Base):
         Args:
             width (int): _description_
         """
-        if type(width) != int:
+        if type(width) is not int:
             raise TypeError("width must be an integer.")
 
         if width <= 0:
@@ -59,7 +59,7 @@ class Rectangle(Base):
         Args:
             height (int): _description_
         """
-        if type(height) != int:
+        if type(height) is not int:
             raise TypeError("height must be an integer.")
 
         if height <= 0:
@@ -78,7 +78,7 @@ class Rectangle(Base):
         Args:
             x (int): _description_
         """
-        if type(x) != int:
+        if type(x) is not int:
             raise TypeError("x must be an integer.")
 
         if x < 0:
@@ -97,7 +97,7 @@ class Rectangle(Base):
         Args:
             y (int): _description_
         """
-        if type(y) != int:
+        if type(y) is not int:
             raise TypeError("y must be an integer.")
 
         if y < 0:
