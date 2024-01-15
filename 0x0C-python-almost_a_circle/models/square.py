@@ -36,17 +36,22 @@ class Square(Rectangle):
         self.height = value
 
     def update(self, *args, **kwargs):
-        params = ["id", "size", "x", "y"]
-
-        for index, value in enumerate(args):
-            if index >= len(params):
-                break
-            if params[index] not in kwargs:
-                setattr(self, params[index], value)
-
-        for key, value in kwargs.items():
-            if key in params:
-                setattr(self, key, value)
+        """square update method"""
+        if args is not None and len(args) is not 0:
+            list_atr = ['id', 'size', 'x', 'y']
+            for i in range(len(args)):
+                if list_atr[i] == 'size':
+                    setattr(self, 'width', args[i])
+                    setattr(self, 'height', args[i])
+                else:
+                    setattr(self, list_atr[i], args[i])
+        else:
+            for key, value in kwargs.items():
+                if key == 'size':
+                    setattr(self, 'width', value)
+                    setattr(self, 'height', value)
+                else:
+                    setattr(self, key, value)
 
     def to_dictionary(self):
         """return the dictionary represintation of the react object"""
