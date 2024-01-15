@@ -112,10 +112,12 @@ class Rectangle(Base):
     def display(self):
         """prints in stdout the Rectangle instance with the character #
         """
-        print("\n" * self.__y, end="")
-        for _ in range(self.__height):
-            print(" " * self.__x, end="")
-            print("#" * self.__width)
+        rectangle = self.y * "\n"
+        for i in range(self.height):
+            rectangle += (" " * self.x)
+            rectangle += ("#" * self.width) + "\n"
+
+        print(rectangle, end='')
 
     def __str__(self) -> str:
         """Update the class Rectangle by overriding the __str__ method
@@ -129,21 +131,20 @@ class Rectangle(Base):
     def update(self, *args, **kwargs):
         """assigns an argument to each attribute
         """
-        params = ["id", "width", "height", "x", "y"]
-        for index, attr in enumerate(args):
-            if index >= len(params):
-                break
-
-            if params[index] in kwargs:
-                continue
-            setattr(self, params[index], attr)
-
-        for key, value in kwargs.items():
-            if key not in params:
-                continue
-            setattr(self, key, value)
+        if args is not None and len(args) is not 0:
+            list_atr = ['id', 'width', 'height', 'x', 'y']
+            for i in range(len(args)):
+                setattr(self, list_atr[i], args[i])
+        else:
+            for key, value in kwargs.items():
+                setattr(self, key, value)
 
     def to_dictionary(self):
         """return the dictionary represintation of the react object"""
-        return {"x": self.x, "y": self.y, "id": self.id,
-                "height": self.height, "width": self.width}
+       list_atr = ['id', 'width', 'height', 'x', 'y']
+        dict_res = {}
+
+        for key in list_atr:
+            dict_res[key] = getattr(self, key)
+
+        return dict_res
